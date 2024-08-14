@@ -279,7 +279,7 @@ def main():
         num_workers=args.dataloader_num_workers
     )
     # Inference
-    generator = torch.Generator(device='cuda').manual_seed(args.seed)
+    generator = torch.Generator(device='cpu').manual_seed(args.seed)
     args.output_dir = os.path.join(args.output_dir, f"{args.dataset_name}-{args.height}", "paired" if args.eval_pair else "unpaired")
     if not os.path.exists(args.output_dir):
         os.makedirs(args.output_dir)

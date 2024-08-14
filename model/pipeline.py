@@ -27,12 +27,14 @@ class CatVTONPipeline:
         attn_ckpt, 
         attn_ckpt_version="mix",
         weight_dtype=torch.float32,
-        device='cuda',
+        device='cpu',
         compile=False,
         skip_safety_check=False,
         use_tf32=True,
     ):
         self.device = device
+        if torch.cuda.is_available():
+            self.device = 'cuda'
         self.weight_dtype = weight_dtype
         self.skip_safety_check = skip_safety_check
 

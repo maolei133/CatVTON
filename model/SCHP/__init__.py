@@ -63,6 +63,8 @@ class SCHP:
             dataset_type = 'pascal'
         assert dataset_type is not None, 'Dataset type not found in checkpoint path'
         self.device = device
+        if torch.cuda.is_available():
+            self.device = 'cuda'
         self.num_classes = dataset_settings[dataset_type]['num_classes']
         self.input_size = dataset_settings[dataset_type]['input_size']
         self.aspect_ratio = self.input_size[1] * 1.0 / self.input_size[0]

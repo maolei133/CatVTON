@@ -157,7 +157,7 @@ class AutoMasker:
         self, 
         densepose_ckpt='./Models/DensePose', 
         schp_ckpt='./Models/SCHP', 
-        device='cuda'):
+        device='cpu'):
         np.random.seed(0)
         torch.manual_seed(0)
         torch.cuda.manual_seed(0)

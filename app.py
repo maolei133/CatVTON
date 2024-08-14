@@ -109,14 +109,14 @@ pipeline = CatVTONPipeline(
     attn_ckpt_version="mix",
     weight_dtype=init_weight_dtype(args.mixed_precision),
     use_tf32=args.allow_tf32,
-    device='cuda'
+    device='cpu'
 )
 # AutoMasker
 mask_processor = VaeImageProcessor(vae_scale_factor=8, do_normalize=False, do_binarize=True, do_convert_grayscale=True)
 automasker = AutoMasker(
     densepose_ckpt=os.path.join(repo_path, "DensePose"),
     schp_ckpt=os.path.join(repo_path, "SCHP"),
-    device='cuda', 
+    device='cpu',
 )
 
 def submit_function(
@@ -145,7 +145,7 @@ def submit_function(
 
     generator = None
     if seed != -1:
-        generator = torch.Generator(device='cuda').manual_seed(seed)
+        generator = torch.Generator(device='cpu').manual_seed(seed)
 
     person_image = Image.open(person_image).convert("RGB")
     cloth_image = Image.open(cloth_image).convert("RGB")

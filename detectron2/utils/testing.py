@@ -32,8 +32,8 @@ def get_model_no_weights(config_path):
     """
     cfg = model_zoo.get_config(config_path)
     if isinstance(cfg, CfgNode):
-        if not torch.cuda.is_available():
-            cfg.MODEL.DEVICE = "cpu"
+        if torch.cuda.is_available():
+            cfg.MODEL.DEVICE = 'cuda'
         return build_model(cfg)
     else:
         return instantiate(cfg.model)

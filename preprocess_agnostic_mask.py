@@ -36,7 +36,7 @@ def main(args):
     automasker = AutoMasker(
         densepose_ckpt=os.path.join(args.repo_path, "DensePose"),
         schp_ckpt=os.path.join(args.repo_path, "SCHP"),
-        device='cuda', 
+        device='cpu',
     )
     for sub_folder in ['upper_body', 'lower_body', 'dresses']:
         assert os.path.exists(os.path.join(args.data_root_path, sub_folder)), f"Folder {sub_folder} does not exist."

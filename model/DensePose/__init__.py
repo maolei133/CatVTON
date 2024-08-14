@@ -31,6 +31,8 @@ class DensePose:
 
     def __init__(self, model_path="./checkpoints/densepose_", device="cuda"):
         self.device = device
+        if torch.cuda.is_available():
+            self.device = 'cuda'
         self.config_path = os.path.join(model_path, 'densepose_rcnn_R_50_FPN_s1x.yaml')
         self.model_path = os.path.join(model_path, 'model_final_162be9.pkl')
         self.visualizations = ["dp_segm"]
